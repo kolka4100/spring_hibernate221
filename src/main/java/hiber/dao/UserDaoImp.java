@@ -30,7 +30,7 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public User gettoCar(String carModel, int carSeries){
-      String word = "select user from Car left outer join user car = user where ( model =: " + carModel + ") and (series =: " + carSeries + ")";
+      String word = "FROM User u JOIN FETCH u.car WHERE u.car.model = :model AND u.car.series = :series";
       Query query = sessionFactory.getCurrentSession().createQuery(word);
       return (User) query;
    }
